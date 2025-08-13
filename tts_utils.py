@@ -49,7 +49,28 @@ def split_into_chunks(text, max_char_limit=300):
     return chunks
 
 
-
+def split_text_into_chunks(text, chunk_size=400):
+    """
+    Split long text into smaller chunks of max length `chunk_size`.
+    """
+    # Split by punctuation followed by space (preserves sentence boundaries)
+    sentences = re.split(r'(?<=[.!?]) +', text)
+    
+    chunks = []
+    current_chunk = ""
+    
+    for sentence in sentences:
+        if len(current_chunk) + len(sentence) > chunk_size:
+            if current_chunk:
+                chunks.append(current_chunk.strip())
+                current_chunk = ""
+        current_chunk += sentence + " "
+    
+    if current_chunk:
+        chunks.append(current_chunk.strip())
+    
+    return chunks
+    
 def clean_text(text):
     # Define replacement rules
     replacements = {

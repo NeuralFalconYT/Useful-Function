@@ -42,6 +42,7 @@ def download_file(url, download_file_path, redownload=False):
     return True
 
 
+
 def download_model(repo_id, download_folder="./", redownload=False):
     # Download all files from a HuggingFace repo without HF_TOKEN using urllib.
     """
@@ -60,7 +61,40 @@ def download_model(repo_id, download_folder="./", redownload=False):
 
     This function avoids that hassle by directly fetching the file list via the Hugging Face TOKEN  
     and downloading the files with `aria2c`, no token required (unless the repo truly requires a license).  
-    """  
+    """      
+    # normalize empty string as current dir
+    if not download_folder.strip():
+        download_folder = "."
+
+    url = f"https://huggingface.co/api/models/{repo_id}"
+    download_dir = os.path.abspath(
+        os.path.join(download_folder.rstrip("/"), repo_id.split("/")[-1])
+    )
+    os.makedirs(download_dir, exist_ok=True)
+
+    print(f"📂 Download directory: {download_dir}")
+
+    response = requests.get(url)
+    if response.status_code != 200:
+        print("❌ Error:", response.status_code, response.text)
+        return None
+
+    data = response.json()
+    siblings = data.get("siblings", [])
+    files = [f["rfilename"] for f in siblings]
+
+    print(f"📦 Found {len(files)} files in repo '{repo_id}'. Checking cache ...")
+
+    for file in tqdm(files, desc="Processing files", unit="file"):
+        file_url = f"https://huggingface.co/{repo_id}/resolve/main/{file}"
+        file_path = os.path.join(download_dir, file)
+        download_file(file_url, file_path, redownload=redownload)
+
+    return download_dir
+
+
+def download_model(repo_id, download_folder="./", redownload=False):
+
     url = f"https://huggingface.co/api/models/{repo_id}"
     download_dir = os.path.abspath(f"{download_folder.rstrip('/')}/{repo_id.split('/')[-1]}")
     os.makedirs(download_dir, exist_ok=True)

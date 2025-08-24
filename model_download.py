@@ -67,4 +67,5 @@ def download_huggingface_model_without_HF_TOKEN(repo_id, download_folder="./", r
             tqdm.write(f"❌ Failed: {file}\n{result.stderr}")
         else:
             tqdm.write(f"⬇️ Downloaded: {file}")
+    return download_dir            
 # download_huggingface_model_without_HF_TOKEN("deepdml/faster-whisper-large-v3-turbo-ct2", download_folder="./", redownload=False)

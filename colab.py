@@ -7,6 +7,10 @@ import os
 os.kill(os.getpid(), 9)
 
 
+# restart runtime cleanly
+import IPython
+IPython.Application.instance().kernel.do_shutdown(True)
+
 #play audio
 from IPython.display import Audio, display
 audio_path = "/content/audio_example.wav"

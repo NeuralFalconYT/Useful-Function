@@ -15,3 +15,21 @@ IPython.Application.instance().kernel.do_shutdown(True)
 from IPython.display import Audio, display
 audio_path = "/content/audio_example.wav"
 display(Audio(audio_path))
+
+
+
+#gradio ui
+
+import click
+@click.command()
+@click.option("--debug", is_flag=True, default=False, help="Enable debug mode.")
+@click.option("--share", is_flag=True, default=False, help="Enable sharing of the interface.")
+def run_demo(share,debug):
+    demo1=ui1()
+    demo2=ui2()
+    demo3=ui3()
+    custom_css = """.gradio-container { font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif; }"""
+    interface = gr.TabbedInterface([demo1, demo2,demo3],["Page 1","Page 2","Page 3"],title="",theme=gr.themes.Soft(),css=custom_css)
+    interface.queue(max_size=10).launch(share=share,debug=debug)
+if __name__ == "__main__":
+    run_demo()

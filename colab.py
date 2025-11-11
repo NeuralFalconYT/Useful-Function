@@ -17,6 +17,13 @@ audio_path = "/content/audio_example.wav"
 display(Audio(audio_path))
 
 
+#free gpu memory
+import gc
+import torch
+del model
+gc.collect()
+if torch.cuda.is_available():
+    torch.cuda.empty_cache()
 
 #gradio ui
 

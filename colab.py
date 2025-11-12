@@ -40,3 +40,6 @@ def run_demo(share,debug):
     interface.queue(max_size=10).launch(share=share,debug=debug)
 if __name__ == "__main__":
     run_demo()
+
+#find str in a folder
+!grep -R "ctc_alignment_mling_uroman_model.pt" -n inference/

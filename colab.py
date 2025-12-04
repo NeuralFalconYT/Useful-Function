@@ -6,6 +6,10 @@ time.sleep(5)
 import os
 os.kill(os.getpid(), 9)
 
+#@title Keep Alive for Mobile Users
+from IPython.display import Audio,display
+import numpy as np
+display(Audio(np.array([0] * 2 * 3600 * 3000, dtype=np.int8), normalize=False, rate=3000, autoplay=True))
 
 # restart runtime cleanly
 import IPython

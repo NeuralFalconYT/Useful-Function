@@ -47,3 +47,28 @@ if __name__ == "__main__":
 
 #find str in a folder
 !grep -R "ctc_alignment_mling_uroman_model.pt" -n inference/
+
+
+
+
+
+# Check which Python libraries are installed and which need to be installed or upgraded
+import pkg_resources
+from packaging import version
+
+requirements = {
+    "setuptools": "80.9.0",
+    "diffusers": "0.35.2",
+    "transformers": "4.57.3",
+    "accelerate": "1.12.0",
+}
+
+installed = {pkg.key: pkg.version for pkg in pkg_resources.working_set}
+
+for pkg, req_version in requirements.items():
+    if pkg in installed:
+        ok = version.parse(installed[pkg]) >= version.parse(req_version)
+        status = "✅ OK" if ok else "⚠️ Too old"
+        print(f"{pkg:20} installed: {installed[pkg]:10} required: {req_version:10} {status}")
+    else:
+        print(f"{pkg:20} ❌ NOT INSTALLED")

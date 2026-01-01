@@ -15,7 +15,10 @@ display(Audio(np.array([0] * 2 * 3600 * 3000, dtype=np.int8), normalize=False, r
 from IPython.display import Audio,display
 import numpy as np
 display(Audio("https://raw.githubusercontent.com/KoboldAI/KoboldAI-Client/main/colab/silence.m4a", autoplay=True))
-
+ # or
+%%html
+<b>Press play on the music player to keep the tab alive, then run the cell below</b><br/>
+<audio src="https://raw.githubusercontent.com/KoboldAI/KoboldAI-Client/main/colab/silence.m4a" controls>
 
 # restart runtime cleanly
 import IPython

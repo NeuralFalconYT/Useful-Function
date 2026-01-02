@@ -31,7 +31,6 @@ display(Audio(np.array([0] * 2 * 3600 * 3000, dtype=np.int8), normalize=False, r
  # or
 #@title Prevent Colab Sleep (If You Are Running Colab on a Smartphone)
 from IPython.display import Audio,display
-import numpy as np
 display(Audio("https://raw.githubusercontent.com/KoboldAI/KoboldAI-Client/main/colab/silence.m4a", autoplay=True))
  # or
 %%html

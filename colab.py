@@ -5,6 +5,24 @@ import time
 time.sleep(5)
 import os
 os.kill(os.getpid(), 9)
+#or 
+
+
+
+
+from IPython.display import Audio,display
+from IPython.display import clear_output
+import time
+clear_output()
+
+display(Audio("https://raw.githubusercontent.com/NeuralFalconYT/Useful-Function/refs/heads/main/audio/warning.mp3", autoplay=True))
+time.sleep(6)
+clear_output()
+time.sleep(5)
+import os
+os.kill(os.getpid(), 9)
+
+
 
 #@title Keep Alive for Mobile Users
 from IPython.display import Audio,display

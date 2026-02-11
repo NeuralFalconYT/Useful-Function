@@ -47,12 +47,12 @@ def download_model(
 ):
     start_time = time.time()
 
-    download_dir = os.path.abspath(
-        f"{download_folder.rstrip('/')}/{repo_id.split('/')[-1]}"
-    )
+    # download_dir = os.path.abspath(
+    #     f"{download_folder.rstrip('/')}/{repo_id.split('/')[-1]}"
+    # )
     download_dir=download_folder
     os.makedirs(download_dir, exist_ok=True)
-
+    download_dir = os.path.abspath(download_dir)
     print(f"📂 Download directory: {download_dir}")
 
     # ---------- SNAPSHOT DOWNLOAD ----------

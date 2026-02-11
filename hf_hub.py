@@ -50,6 +50,7 @@ def download_model(
     download_dir = os.path.abspath(
         f"{download_folder.rstrip('/')}/{repo_id.split('/')[-1]}"
     )
+    download_dir=download_folder
     os.makedirs(download_dir, exist_ok=True)
 
     print(f"📂 Download directory: {download_dir}")
@@ -107,7 +108,7 @@ def download_model(
 # from hf_hub import download_model
 # download_model(
 #     "ACE-Step/Ace-Step1.5",
-#     download_folder="./",
+#     download_folder="./model",
 #     redownload=True,
 #     workers=6,
 #     use_snapshot=True,  

@@ -57,6 +57,18 @@ if torch.cuda.is_available():
 
 #gradio ui
 
+
+def ui():
+  custom_css = """.gradio-container { font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif; }"""
+
+  with gr.Blocks(theme=gr.themes.Soft(), css=custom_css) as demo:
+      gr.HTML("""
+          <div style="text-align: center; margin: 20px auto; max-width: 800px;">
+              <h1 style="font-size: 2.5em; margin-bottom: 5px;">🎙️ VibeVoice-Realtime-0.5B </h1>
+          </div>""")
+
+
+          with gr.Accordion("Examples", open=True):
 import click
 @click.command()
 @click.option("--debug", is_flag=True, default=False, help="Enable debug mode.")

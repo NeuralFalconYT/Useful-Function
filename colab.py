@@ -1,3 +1,7 @@
+#gradio share bypass
+!npm install -g localtunnel
+!lt --port 7860
+
 #Auto Restart Colab Runtime
 from IPython.display import clear_output
 clear_output()

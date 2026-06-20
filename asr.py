@@ -1,3 +1,5 @@
+# !pip install faster-whisper==1.1.1
+# !pip install ctranslate2==4.6.0
 import os
 import gc
 import time
@@ -186,5 +188,5 @@ def get_transcript(audio_path: str, language: str = "Auto") -> tuple[str, str]:
 # from asr import get_transcript
 #
 # text, lang = get_transcript("/content/audio.mp3")           # auto-detect
-# text, lang = get_transcript("/content/audio.mp3", "Hindi")  # force language
+# text, lang = get_transcript("/content/audio.mp3", "English")  # force language
 # print(lang, text)
